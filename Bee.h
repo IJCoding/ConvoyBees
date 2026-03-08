@@ -47,7 +47,6 @@ private:
 
 };
 
-
 class Drone : Bee
 {
 public:

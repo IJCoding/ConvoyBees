@@ -4,7 +4,9 @@
 
 int main()
 {
-	Bee tester;
+	Drone droneTest;
+	Worker workerTest;
+	Queen queenTest;
 
 	std::cout <<  std::endl;
 }

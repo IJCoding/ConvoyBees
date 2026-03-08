@@ -22,6 +22,24 @@ public:
 
 	string outputAllAttributes();
 
+	void updateAttribute(string _attributeName, USI _minimum = 0, USI _current = 0, USI _maximum = 0)
+	{
+		if (_minimum == 0) attributes[_attributeName].values[MINIMUM] = getMinimum(_attributeName);
+		else attributes[_attributeName].values[MINIMUM] = _minimum;
+
+		if (_current == 0) attributes[_attributeName].values[CURRENT] = getCurrent(_attributeName);
+		else attributes[_attributeName].values[CURRENT] = _current;
+		
+		if (_maximum == 0) attributes[_attributeName].values[MAXIMUM] = getMaximum(_attributeName);
+		else attributes[_attributeName].values[MAXIMUM] = _maximum;
+
+		attributes[_attributeName].bindValues();
+		
+	};
+
+	USI getMinimum(string _attributeName) { return attributes[_attributeName].values[MINIMUM]; };
+	USI getCurrent(string _attributeName) { return attributes[_attributeName].values[CURRENT]; };
+	USI getMaximum(string _attributeName) { return attributes[_attributeName].values[MAXIMUM]; };
 
 private:
 	
@@ -33,7 +51,10 @@ private:
 class Drone : Bee
 {
 public:
-	Drone() {};
+	Drone() 
+	{
+		updateAttribute(RANK, 1, 1, 3);
+	};
 	~Drone() {};
 
 private:
@@ -43,7 +64,10 @@ private:
 class Worker : Bee
 {
 public:
-	Worker() {};
+	Worker() 
+	{
+		updateAttribute(RANK, 1, 2, 3);
+	};
 	~Worker() {};
 
 private:
@@ -52,7 +76,10 @@ private:
 class Queen : Bee
 {
 public:
-	Queen() {};
+	Queen() 
+	{
+		updateAttribute(RANK, 1, 3, 3);
+	};
 	~Queen() {};
 
 private:

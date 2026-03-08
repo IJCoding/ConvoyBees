@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="ConvoyBees.vcxproj" />
+  <Project Path="ConvoyBees.vcxproj" Id="76f60bc6-daea-46cc-a0c4-a69c0fe83534" />
 </Solution>

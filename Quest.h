@@ -2,6 +2,8 @@
 #define QUEST_H
 #include "Utilities.h"
 
+using std::pair;
+
 class Quest
 {
 public:
@@ -9,31 +11,27 @@ public:
 	Quest() {};
 	~Quest() {};
 
-	bool tryGiveRequirement(string _type, USI _amount)
+	bool isRequirement(string _type) const
 	{
-		if (requirements.contains(_type))
-			if (!requirements.at(_type).isAtMax())
-				updateRequirement(_type, _amount);
+		return requirements.contains(_type);
 	}
 
-	USI updateRequirement(string _type, USI _amount)
+	//Returns true only if present and meets or exceeds requirement
+	bool isMeetingRequirement(pair<string, USI> _givenAttribute) const
 	{
-		USI _localAmount = _amount;
-		while (!requirements.at(_type).isAtMax() && (_localAmount != 0))
+		bool result = false;
+		if (isRequirement(_givenAttribute.first))
 		{
-			requirements.at(_type)++;
-			_localAmount--;
+			result = _givenAttribute.second >= requirements.at(_givenAttribute.first);
 		}
-		requirements.at(_type).remainingToMax();
-		_amount;
 
-
-	};
+		return result;
+	}
 
 
 private:
 
-	map<string, BoundValue> requirements;
+	map<string, USI> requirements;
 };
 
 

@@ -16,6 +16,17 @@ public:
 		return requirements.contains(_type);
 	}
 
+	USI getRequiredAmount(string _type) const
+	{
+		USI result = 0;
+		if (isRequirement(_type))
+		{
+			result = requirements.at(_type);
+		}
+
+		return result;
+	}
+
 	//Returns true only if present and meets or exceeds requirement
 	bool isMeetingRequirement(pair<string, USI> _givenAttribute) const
 	{
@@ -36,6 +47,8 @@ public:
 				requirements.at(_givenAttribute.first)--;
 		}
 	}
+
+	map<string, USI> const getRequirements() { return requirements; }
 
 private:
 

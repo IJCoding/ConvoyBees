@@ -28,6 +28,14 @@ public:
 		return result;
 	}
 
+	void lowerRequirement(pair<string, USI> _givenAttribute, USI _amount)
+	{
+		if (isRequirement(_givenAttribute.first))
+		{
+			while ((_amount >= 0) && (requirements.at(_givenAttribute.first) > 0))
+				requirements.at(_givenAttribute.first)--;
+		}
+	}
 
 private:
 

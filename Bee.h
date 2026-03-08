@@ -1,5 +1,6 @@
 #ifndef BEES_H
 #define BEES_H
+
 #include <map>
 #include <string>
 #include "Utilities.h"
@@ -10,17 +11,15 @@ using std::string;
 class Bee
 {
 public:
-
-	Bee() 
+	Bee()
 	{
-		for (int i = 0; i < allAttributes.size(); i++)
+		for (const auto& attribute : allAttributes)
 		{
-			attributes.emplace(allAttributes[i], BoundValue(12));
+			attributes.emplace(attribute, BoundValue(12));
 		}
-	};
-	virtual ~Bee() {};
+	}
 
-	string outputAllAttributes();
+	virtual ~Bee() {}
 
 	void updateAttribute(string _attributeName, USI _minimum = 0, USI _current = 0, USI _maximum = 0)
 	{
@@ -29,60 +28,54 @@ public:
 
 		if (_current == 0) attributes[_attributeName].values[CURRENT] = getCurrent(_attributeName);
 		else attributes[_attributeName].values[CURRENT] = _current;
-		
+
 		if (_maximum == 0) attributes[_attributeName].values[MAXIMUM] = getMaximum(_attributeName);
 		else attributes[_attributeName].values[MAXIMUM] = _maximum;
 
 		attributes[_attributeName].bindValues();
-		
-	};
+	}
 
-	USI getMinimum(string _attributeName) { return attributes[_attributeName].values[MINIMUM]; };
-	USI getCurrent(string _attributeName) { return attributes[_attributeName].values[CURRENT]; };
-	USI getMaximum(string _attributeName) { return attributes[_attributeName].values[MAXIMUM]; };
+	USI getMinimum(string _attributeName) const { return attributes.at(_attributeName).values.at(MINIMUM); }
+	USI getCurrent(string _attributeName) const { return attributes.at(_attributeName).values.at(CURRENT); }
+	USI getMaximum(string _attributeName) const { return attributes.at(_attributeName).values.at(MAXIMUM); }
+
+	const map<string, BoundValue>& getAttributes() const { return attributes; }
 
 private:
-	
-	map <string, BoundValue> attributes;
-
+	map<string, BoundValue> attributes;
 };
 
-class Drone : Bee
+class Drone : public Bee
 {
 public:
-	Drone() 
+	Drone()
 	{
 		updateAttribute(RANK, 1, 1, 3);
-	};
-	~Drone() {};
+	}
 
-private:
-
+	~Drone() {}
 };
 
-class Worker : Bee
+class Worker : public Bee
 {
 public:
-	Worker() 
+	Worker()
 	{
 		updateAttribute(RANK, 1, 2, 3);
-	};
-	~Worker() {};
+	}
 
-private:
+	~Worker() {}
 };
 
-class Queen : Bee
+class Queen : public Bee
 {
 public:
-	Queen() 
+	Queen()
 	{
 		updateAttribute(RANK, 1, 3, 3);
-	};
-	~Queen() {};
+	}
 
-private:
+	~Queen() {}
 };
 
-
-#endif //BEES_H
+#endif // BEES_H

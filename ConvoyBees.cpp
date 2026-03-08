@@ -4,5 +4,7 @@
 
 int main()
 {
+	Bee tester;
 
+	std::cout <<  std::endl;
 }

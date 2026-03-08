@@ -3,12 +3,16 @@
 #include <cmath>
 #include <map>
 #include <string>
+#include <vector>
+
+typedef unsigned short int USI;
 
 using std::abs;
 using std::string;
 using std::map;
-typedef unsigned short int USI;
+using std::vector;
 
+inline const vector<string> allAttributes { "Rank", "Speed", "Hardiness", "Size", "Age", "Strength", "Vision", "Memory", "Grace" };
 
 class BoundValue
 {

@@ -11,8 +11,17 @@ class Bee
 {
 public:
 
-	Bee() {};
+	Bee() 
+	{
+		for (int i = 0; i < allAttributes.size(); i++)
+		{
+			attributes.emplace(allAttributes[i], BoundValue(12));
+		}
+	};
 	virtual ~Bee() {};
+
+	string outputAllAttributes();
+
 
 private:
 	

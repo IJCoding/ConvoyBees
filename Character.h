@@ -11,6 +11,8 @@ public:
 
 	Quest& getQuest(const string& questName) { return allQuests.at(questName); }
 
+	const Quest& getQuest(const string& questName) const {return allQuests.at(questName); }
+
 	bool hasActiveQuest(string _questName, bool _isActive) 
 	{
 		bool result = false;

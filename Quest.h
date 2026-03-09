@@ -7,8 +7,14 @@ using std::pair;
 class Quest
 {
 public:
-
-	Quest() {};
+	Quest(string _questName, map<string, USI> _requirements,
+		bool _isActive = false, bool _isCompleted = false)
+	{
+		questName = _questName;
+		requirements = _requirements;
+		isActive = _isActive;
+		isCompleted = _isCompleted;
+	};
 	~Quest() {};
 
 	bool isRequirement(string _type) const
@@ -49,10 +55,18 @@ public:
 	}
 
 	map<string, USI> const getRequirements() { return requirements; }
+	bool getIsActive() const { return isActive; }
+	bool getIsCompleted() const { return isCompleted; }
+	string getName() const { return questName; }
+	void toggleQuestActive() { isActive = !getIsActive(); }
+	void toggleQuestCompleted() { isCompleted = !getIsCompleted(); }
 
 private:
 
+	string questName;
 	map<string, USI> requirements;
+	bool isActive = false;
+	bool isCompleted = false;
 };
 
 

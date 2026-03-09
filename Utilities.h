@@ -11,6 +11,7 @@ using std::abs;
 using std::string;
 using std::map;
 using std::vector;
+using std::pair;
 
 #ifndef CONSTANTS
 #define CONSTANTS

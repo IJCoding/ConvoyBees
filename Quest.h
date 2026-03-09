@@ -2,15 +2,14 @@
 #define QUEST_H
 #include "Utilities.h"
 
-using std::pair;
-
 class Quest
 {
 public:
+	
 	Quest(string _questName, map<string, USI> _requirements,
 		bool _isActive = false, bool _isCompleted = false)
 	{
-		questName = _questName;
+		name = _questName;
 		requirements = _requirements;
 		isActive = _isActive;
 		isCompleted = _isCompleted;
@@ -57,13 +56,13 @@ public:
 	map<string, USI> const getRequirements() { return requirements; }
 	bool getIsActive() const { return isActive; }
 	bool getIsCompleted() const { return isCompleted; }
-	string getName() const { return questName; }
+	string getName() const { return name; }
 	void toggleQuestActive() { isActive = !getIsActive(); }
 	void toggleQuestCompleted() { isCompleted = !getIsCompleted(); }
 
 private:
 
-	string questName;
+	string name;
 	map<string, USI> requirements;
 	bool isActive = false;
 	bool isCompleted = false;

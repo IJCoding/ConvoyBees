@@ -35,32 +35,47 @@ public:
 		}
 	}
 
-	void markQuestComplete(const string& questName)
+	void markQuestComplete(const string& _questName)
 	{
-		if (!hasQuest(questName))
+		if (!hasQuest(_questName))
 			return;
 
-		auto& quest = getQuest(questName);
+		auto& quest = getQuest(_questName);
 
 		if (!quest.getIsCompleted())
 			quest.toggleQuestCompleted();
 	}
 
-	void markQuestActive(const string& questName)
+	void markQuestActive(const string& _questName)
 	{
-		if (!hasQuest(questName))
+		if (!hasQuest(_questName))
 			return;
 
-		auto& quest = getQuest(questName);
+		auto& quest = getQuest(_questName);
 
 		if (!quest.getIsActive())
 			quest.toggleQuestActive();
 	}
+	
+	void markQuestInactive(const string& _questName)
+	{
+		if (!hasQuest(_questName))
+			return;
+
+		auto& quest = getQuest(_questName);
+
+		if (quest.getIsActive())
+			quest.toggleQuestActive();
+	}
+	bool getIsActive() const { return isActive; }
+	string getName() const { return name; }
+	void toggleCharacterActive() { isActive = !getIsActive(); }
 
 private:
-
+	string name;
+	bool isActive = false;
 	map<string, Quest> allQuests;
 
 };
 
-#endif CHARACTER_H
+#endif //CHARACTER_H

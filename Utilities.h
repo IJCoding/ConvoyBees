@@ -16,6 +16,7 @@ using std::pair;
 #ifndef CONSTANTS
 #define CONSTANTS
 
+//These are made to avoid transliteration errors
 const string RANK = "Rank";
 const string SPEED = "Speed";
 const string HARDINESS = "Hardiness";
@@ -31,6 +32,7 @@ const string MAXIMUM = "Maximum";
 
 #endif //CONSTANTS
 
+//The baseline attributes that exist within the game
 inline const vector<string> allAttributes { RANK, SPEED, HARDINESS, SIZE, AGE, STRENGTH, VISION, MEMORY, GRACE };
 
 class BoundValue
@@ -39,8 +41,11 @@ public:
 
 	BoundValue() : BoundValue(12) {}
 
+	//By default a boundValue has a minimum, current, and maximum value
+	//One can set them all to be the same
 	BoundValue(USI value) : BoundValue(value, value, value) {}
 
+	//One can also set it with a particular value in each one 
 	BoundValue(USI _min, USI _cur, USI _max)
 	{
 		values[MINIMUM] = _min;
@@ -49,6 +54,9 @@ public:
 		bindValues();
 	}
 
+	//Bind values makes sure that the mimum is the smallest, 
+	//maximum is the largest, 
+	//and current resides within the two
 	void bindValues()
 	{
 		if (values[MINIMUM] > values[MAXIMUM])
@@ -61,8 +69,13 @@ public:
 			values[CURRENT] = values[MINIMUM];
 	}
 
+	//A checker to make sure that the BoundValue is at it's maximum value
 	bool isAtMax() const { return values.at(CURRENT) == values.at(MAXIMUM); }
+
+	//A checker to make sure that the BoundValue is at it's minimum value
 	bool isAtMin() const { return values.at(CURRENT) == values.at(MINIMUM); }
+
+	//Returns how many in absolute terms is required to make the current the maximum value
 	USI remainingToMax() const { return values.at(MAXIMUM) - values.at(CURRENT); }
 
 	BoundValue operator+(USI _alterAmount) const
@@ -126,6 +139,7 @@ public:
 		return temp;
 	}
 
+	//All Bound values have a string (the key) and the USI values 
 	map<string, USI> values;
 };
 

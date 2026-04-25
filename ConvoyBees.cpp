@@ -1,12 +1,11 @@
 #include <iostream>
 #include "Bee.h"
 
-
 int main()
 {
 	Drone droneTest;
 	Worker workerTest;
 	Queen queenTest;
 
-	std::cout << "example" << std::endl;
+	std::cin.get();
 }

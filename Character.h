@@ -98,7 +98,7 @@ private:
 	}
 
 	//Sets the completed-state of a given quest(found by name) to the given active-state
-	void markActiveStatusOfQuest(const string& _questName, bool shouldBeCompleted)
+	void markCompletedStatusOfQuest(const string& _questName, bool shouldBeCompleted)
 	{
 		if (!hasQuest(_questName))
 			return;

@@ -8,5 +8,5 @@ int main()
 	Worker workerTest;
 	Queen queenTest;
 
-	std::cout <<  std::endl;
+	std::cout << "example" << std::endl;
 }
